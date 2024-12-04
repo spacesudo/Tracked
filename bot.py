@@ -80,7 +80,7 @@ def poll_transactions():
                     tx_hash = latest_tx["hash"]
                     if wallet not in last_seen[user_id] or last_seen[user_id][wallet] != tx_hash:
                         last_seen[user_id][wallet] = tx_hash
-                        bot.send_message(user_id, f"New transaction for wallet {wallet}:\nHash: {tx_hash}\nValue: {int(latest_tx['value']) / 1e18} ETH")
+                        bot.send_message(user_id, f"🚨New transaction for wallet {wallet}:\n\nTx Hash: [Etherscan](https://etherscan.io/tx/{tx_hash})\nValue: {int(round(latest_tx['value']) / 1e18, 2)} ETH")
         time.sleep(10)  # Poll every 30 seconds
 
 # Start the bot and background polling
